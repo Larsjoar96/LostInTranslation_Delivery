@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import { useSelector } from "react-redux";
-
 const UserTranslationHistory = ({histories}) => { 
 
     const historyList = histories.map((history, index) => <UserTranslationHistory key={index + "  " + history} item={history} />)

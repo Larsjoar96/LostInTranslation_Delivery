@@ -2,21 +2,26 @@
  import UserActions from "../components/User/UserAction";
  import UserHeader from "../components/User/UserHeader";
  import UserTranslationHistory from "../components/User/UserTranslationHistory";
+ import {storageSave} from "../utils/storage"
 
  const userPage = () => {
+
+ 
     return(     
     <div>
     <h1>User</h1>
     {/* <UserTranslationHistory/> */}
     </div>
     )
-//  const { user } = useUser()
-
+//  const { user , setUser } = useUser()
+   const logout = () => {
+    storageSave
+    }
 //     return (
 //         <>
-            
+            // <h1>User</h1>
 //             <UserHeader username={user.username}/>
-//             <UserActions />
+//             <UserActions logout={logout} />
 //             <UserTranslationHistory translations={user.translations}/>
 //         </>
 //     )

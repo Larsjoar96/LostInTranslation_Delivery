@@ -1,19 +1,29 @@
 import { NavLink } from "react-router-dom"
 
-const navBar = () => {
+const NavBar = () => {
+
+   // const {user} = useUser ()
+
     return (
         <nav> 
             <ul>
-                <li> </li>
+                <li>
+                    
+                </li>
             </ul>
-            <ul>
+            {/* { user !== null &&  */}
+              <ul>
+                
                 <li>
                     <NavLink to="/Translation">Translation</NavLink>
                 </li>
                 <li>
                     <NavLink to="/User">User</NavLink>
                 </li>
-            </ul>
+            </ul>  
+            {/* } */}
+            
         </nav>
     )
 }
+export default NavBar

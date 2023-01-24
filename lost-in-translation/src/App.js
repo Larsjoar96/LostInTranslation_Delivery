@@ -7,14 +7,14 @@ import {
 import LoginPage from './views/LoginPage';
 import TranslationPage from './views/TranslationPage';
 import UserPage from './views/UserPage';
-import navBar from './components/NavBar';
+import NavBar from './components/NavBar/NavBar';
 
 function App() {
 
   return (
     <BrowserRouter>
       <div className="App">
-        <navBar/>
+        <NavBar/>
         <Routes>
           <Route path = "/" element = {<LoginPage/>}/>
           <Route path = "/Translation" element = {<TranslationPage/>}/>
