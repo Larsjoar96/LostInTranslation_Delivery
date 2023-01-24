@@ -1,23 +1,31 @@
-// import withAuth from ".../hoc/withAuth"
-//simport UserActions from "../components/User/UserAction";
-// import UserHeader from "../components/User/UserHeader";
-// import UserTranslationHistory from "../components/User/UserTranslationHistory";
+ //import withAuth from "../hoc/withAuth";
+ import UserActions from "../components/User/UserAction";
+ import UserHeader from "../components/User/UserHeader";
+ import UserTranslationHistory from "../components/User/UserTranslationHistory";
+ import {storageSave} from "../utils/storage"
 
- const UserPage = () => {
-    return(
+ const userPage = () => {
+
+ 
+    return(     
+    <div>
     <h1>User</h1>
+    {/* <UserTranslationHistory/> */}
+    </div>
     )
-// const { user } = useUser()
-
+//  const { user , setUser } = useUser()
+   const logout = () => {
+    storageSave
+    }
 //     return (
-        // <>
-        //     
-        //     <UserHeader username={user.username}/>
-        //     <UserActions />
-        //     <UserTranslationHistory translations={user.translations}/>
-        // </>
+//         <>
+            // <h1>User</h1>
+//             <UserHeader username={user.username}/>
+//             <UserActions logout={logout} />
+//             <UserTranslationHistory translations={user.translations}/>
+//         </>
 //     )
  }
 
-// export default withAuth(User);
-export default UserPage;
+//  export default withAuth(userPage);
+ export default userPage;
