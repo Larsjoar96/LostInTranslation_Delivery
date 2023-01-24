@@ -2,7 +2,7 @@
  import UserActions from "../components/User/UserAction";
  import UserHeader from "../components/User/UserHeader";
  import UserTranslationHistory from "../components/User/UserTranslationHistory";
- import {storageSave} from "../utils/storage"
+
 
  const userPage = () => {
 
@@ -14,9 +14,10 @@
     </div>
     )
 //  const { user , setUser } = useUser()
-   const logout = () => {
-    storageSave
-    }
+//    const logout = () => {
+//     storageSave(STORAGE_KEY_USER, null)
+//     setUser(null)
+//     }
 //     return (
 //         <>
             // <h1>User</h1>
