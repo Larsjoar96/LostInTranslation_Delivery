@@ -1,36 +1,34 @@
+import { useState } from 'react';
 import {useForm} from 'react-hook-form'
-    
-    let imageArray = [];
     const translationConfig = {
         required: true,
     }
-    
     const TranslationInputField = () => {
+        let [imageArray,setImageArray] = useState([]);
+        const translation = imageArray.map((image,index)=> <img src={require(`../signs/${image}.png`)} key={index} alt="sign"/>)
         const{
             register,
             handleSubmit,
             formState:{errors}
         } = useForm();
-    
         const onSubmit = (data) => {
             const textArray = data.translation.split("");
-            console.log(textArray);
+            //console.log(textArray);
             translateText(textArray);
         }
         function translateText(textArray)
         {
-            console.log("yippi");
+            imageArray.length = 0;
             for(let i = 0; i < textArray.length; i++)
             {
                 textArray[i] = textArray[i].toLowerCase();
                 if(textArray[i].match(/[a-z]/i))
                 {
-                    imageArray.push("/individial_signs/" + textArray[i]);
+                    imageArray.push(textArray[i]);
                 }
             }
-            console.log(imageArray);
+            //console.log(imageArray);
         }
-    
         const errorMessage = (() =>
         {
             if (!errors.translation)
@@ -42,24 +40,20 @@ import {useForm} from 'react-hook-form'
                 return <span>No text found</span>;
             }
         })()
-
     return(
     <>
         <form onSubmit={handleSubmit(onSubmit)}>
             <fieldset>
                 <label htmlFor='translation'>Translation:</label>
                 <input type="text"
-                placeholder="Enter text to translate" 
+                placeholder="Enter text to translate"
                 {...register("translation", translationConfig)}/>
                 { errorMessage }
             </fieldset>
             <button type="submit">Translate</button>
         </form>
-
-        <fieldset>
     <h3>Translation goes here</h3>
-    <image></image>
-    </fieldset>
+        {translation}
     </>
     )
 }
