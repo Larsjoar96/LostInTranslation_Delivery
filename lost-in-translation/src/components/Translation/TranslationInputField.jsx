@@ -27,7 +27,7 @@ import {useForm} from 'react-hook-form'
                     imageArray.push(textArray[i]);
                 }
             }
-            //console.log(imageArray);
+            console.log(imageArray);
         }
         const errorMessage = (() =>
         {

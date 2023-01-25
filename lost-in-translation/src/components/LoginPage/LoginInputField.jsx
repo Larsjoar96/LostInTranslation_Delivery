@@ -1,6 +1,7 @@
 import {useForm} from 'react-hook-form'
 import {useState} from 'react';
 import { useNavigate } from 'react-router-dom';
+import {loginUser} from '../../api/user'
 
 const usernameConfig = {
     required: true,
@@ -14,8 +15,10 @@ const LoginInputField = () => {
         formState:{errors}
     } = useForm();
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const onSubmit = async ({username}) => {
+        const [error, user] = await loginUser(username);
+        console.log('Error:', error);
+        console.log('User:', user);
     }
 
     const [userName] = useState("")
