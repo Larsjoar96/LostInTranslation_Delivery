@@ -1,4 +1,6 @@
 import {useForm} from 'react-hook-form'
+import {useState} from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const usernameConfig = {
     required: true,
@@ -15,6 +17,16 @@ const LoginInputField = () => {
     const onSubmit = (data) => {
         console.log(data);
     }
+
+    const [userName] = useState("")
+    const navigate = useNavigate()
+
+    function loginButton(){
+
+        localStorage.setItem("userName", userName)
+
+        navigate ("/Translation")
+    }   
 
     const errorMessage = (() =>
     {
@@ -41,10 +53,10 @@ const LoginInputField = () => {
                 <label htmlFor='username'>Username:</label>
                 <input type="text"
                 placeholder="Enter username" 
-                {...register("username", usernameConfig)}/>
+                {...register("userName", usernameConfig)}/>
                 { errorMessage }
             </fieldset>
-            <button type="submit">Login</button>
+            <button type="submit" onClick={loginButton()}>Login</button>
         </form>
 
     </>

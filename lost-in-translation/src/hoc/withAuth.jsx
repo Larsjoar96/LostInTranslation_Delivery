@@ -1,8 +1,8 @@
 import {Navigate} from "react-router-dom"
-//import { useUser } from ".../context/UserContext";
+
 
 const withAuth = Component => props =>{
-    if(localStorage.getItem("userName") !== null){
+    if(localStorage.getItem("userName") == "testen"){
         return <Component{...props} />;
     }
     else{ <Navigate to="/" />;
