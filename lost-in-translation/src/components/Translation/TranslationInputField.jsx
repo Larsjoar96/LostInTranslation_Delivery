@@ -1,6 +1,6 @@
 import {useForm} from 'react-hook-form'
-import {translateText} from './TranslationOutput'
-
+    
+    let imageArray = [];
     const translationConfig = {
         required: true,
     }
@@ -15,7 +15,20 @@ import {translateText} from './TranslationOutput'
         const onSubmit = (data) => {
             const textArray = data.translation.split("");
             console.log(textArray);
-            //translateText(textArray);
+            translateText(textArray);
+        }
+        function translateText(textArray)
+        {
+            console.log("yippi");
+            for(let i = 0; i < textArray.length; i++)
+            {
+                textArray[i] = textArray[i].toLowerCase();
+                if(textArray[i].match(/[a-z]/i))
+                {
+                    imageArray.push("/individial_signs/" + textArray[i]);
+                }
+            }
+            console.log(imageArray);
         }
     
         const errorMessage = (() =>
@@ -42,6 +55,11 @@ import {translateText} from './TranslationOutput'
             </fieldset>
             <button type="submit">Translate</button>
         </form>
+
+        <fieldset>
+    <h3>Translation goes here</h3>
+    <image></image>
+    </fieldset>
     </>
     )
 }
