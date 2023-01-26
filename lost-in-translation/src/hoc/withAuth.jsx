@@ -1,11 +1,14 @@
+import { useUser } from "../context/UserContext";
 import {Navigate} from "react-router-dom"
 
 
 const withAuth = Component => props =>{
-    if(localStorage.getItem("Current user") != null){
-        return <Component{...props} />;
+    const {user}=useUser()
+    if(user == null){
+        return <Component {...props} />
     }
-    else{ <Navigate to="/" />;
+    else{ 
+        return <Navigate to="/" />
     }
 }
 export default withAuth;
