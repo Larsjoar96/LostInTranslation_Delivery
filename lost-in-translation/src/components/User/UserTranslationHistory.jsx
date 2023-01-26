@@ -1,12 +1,19 @@
-const UserTranslationHistory = ({histories}) => { 
+import { useState } from "react"
+import UserTranslationHistoryItem from "./UserTranslationHistoryItem"
 
-    const historyList = histories.map((history, index) => <UserTranslationHistory key={index + "  " + history} item={history} />)
+const UserTranslationHistory = (history) => { 
 
+    let [historyList, setHistoryList] = useState([])
+    const translationHistory = historyList.map((history, index) => <UserTranslationHistory key={index + "  " + history}  alt ={history} />)
+    console.log(translationHistory)
+    console.log(history)
+    console.log(historyList)
     return (
         <section>
         <h3>Your translation history</h3>
         <ul>
-            {historyList}
+            {translationHistory}
+            
         </ul>
         </section>
     )
