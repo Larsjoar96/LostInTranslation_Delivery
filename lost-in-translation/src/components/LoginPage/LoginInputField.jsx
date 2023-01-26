@@ -3,6 +3,8 @@ import {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import {loginUser} from '../../api/user'
 import { saveStorage } from '../../utils/storage';
+import { useEffect } from 'react';
+import { useUser } from '../../context/UserContext';
 
 const usernameConfig = {
     required: true,
@@ -16,18 +18,29 @@ const LoginInputField = () => {
         formState:{errors}
     } = useForm();
 
+    const { user, setUser} = useUser()
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        console.log("brøs", user)
+    }, [user])
+
     const onSubmit = async ({username}) => {
-        const [error, user] = await loginUser(username);
+
+        const [error, userResponse] = await loginUser(username);
         
         if(user !== null){
             saveStorage('Current user', user)
         }
-        
         loginButton();
 
     }
-    
-    const navigate = useNavigate()
+
+    if(userResponse !== null){
+        storageSave('Current-user', userResponse)
+        setUser(userResponse)
+    }
+
     //const [userName] = useState("")
     function loginButton(){
         
