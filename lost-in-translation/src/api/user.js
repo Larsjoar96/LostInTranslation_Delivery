@@ -3,10 +3,10 @@ import { createHeaders } from "./index";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 
-const checkForUser = async () => {
+const checkForUser = async (username) => {
     try {
-        const response = fetch(`${apiUrl}?username=${username}`)
-        if(!response.ok){
+        const response = await fetch(`${apiUrl}?username=${username}`)
+        if(!(await response).ok){
             throw new Error('Could not complete request')
         }
         const data = await (await response).json();
@@ -17,17 +17,19 @@ const checkForUser = async () => {
     }
 }
 
-const createUser = async () => {
+const createUser = async (username) => {
     try {
-        const response = fetch(apiUrl, {
+        console.log(createHeaders());
+        const response = await fetch(apiUrl, {
             method: 'POST',
-            header: createHeaders(),
+            headers: createHeaders(),
             body: JSON.stringify({
                 username,
                 translations: []
             })
         })
-        if(!response.ok){
+        console.log(response);
+        if(!await response.ok){
             throw new Error('Could not create user with username: ' + username)
         }
         const data = await (await response).json();
@@ -42,7 +44,7 @@ export const loginUser = async (username) =>
 {
     const [checkError, user] = await checkForUser(username);
 
-    if(createError !== null){
+    if(checkError !== null){
         return[checkError, null]
     }
 
@@ -52,4 +54,3 @@ export const loginUser = async (username) =>
     return await createUser(username);
 
 }
-[error, user]

@@ -16,19 +16,20 @@ const LoginInputField = () => {
     } = useForm();
 
     const onSubmit = async ({username}) => {
+        console.log(username)
         const [error, user] = await loginUser(username);
         console.log('Error:', error);
         console.log('User:', user);
     }
 
-    const [userName] = useState("")
+    //const [userName] = useState("")
     const navigate = useNavigate()
 
     function loginButton(){
 
-        localStorage.setItem("userName", userName)
+        //localStorage.setItem("userName", userName)
 
-        navigate ("/Translation")
+        //navigate ("/Translation")
     }   
 
     const errorMessage = (() =>
@@ -56,7 +57,7 @@ const LoginInputField = () => {
                 <label htmlFor='username'>Username:</label>
                 <input type="text"
                 placeholder="Enter username" 
-                {...register("userName", usernameConfig)}/>
+                {...register("username", usernameConfig)}/>
                 { errorMessage }
             </fieldset>
             <button type="submit" onClick={loginButton()}>Login</button>
