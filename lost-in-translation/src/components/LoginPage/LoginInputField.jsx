@@ -20,16 +20,15 @@ const LoginInputField = () => {
         const [error, user] = await loginUser(username);
         console.log('Error:', error);
         console.log('User:', user);
+        loginButton();
     }
-
-    //const [userName] = useState("")
     const navigate = useNavigate()
-
+    //const [userName] = useState("")
     function loginButton(){
+        
+        navigate ("/Translation")
 
         //localStorage.setItem("userName", userName)
-
-        //navigate ("/Translation")
     }   
 
     const errorMessage = (() =>
