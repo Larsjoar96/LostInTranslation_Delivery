@@ -1,7 +1,8 @@
 import {useForm} from 'react-hook-form'
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import {loginUser} from '../../api/user'
+import { saveStorage } from '../../utils/storage';
 
 const usernameConfig = {
     required: true,
@@ -16,12 +17,16 @@ const LoginInputField = () => {
     } = useForm();
 
     const onSubmit = async ({username}) => {
-        console.log(username)
         const [error, user] = await loginUser(username);
-        console.log('Error:', error);
-        console.log('User:', user);
+        
+        if(user !== null){
+            saveStorage('Current user', user)
+        }
+        
         loginButton();
+
     }
+    
     const navigate = useNavigate()
     //const [userName] = useState("")
     function loginButton(){

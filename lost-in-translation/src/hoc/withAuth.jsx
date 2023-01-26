@@ -2,7 +2,7 @@ import {Navigate} from "react-router-dom"
 
 
 const withAuth = Component => props =>{
-    if(localStorage.getItem("userName") == "testen"){
+    if(localStorage.getItem("Current user") != null){
         return <Component{...props} />;
     }
     else{ <Navigate to="/" />;
