@@ -18,7 +18,7 @@ import { saveStorage } from '../../utils/storage';
             formState:{errors}
         } = useForm();
         const onSubmit = async (data) => {
-            const translation = data;
+            const translation = data.translation;
             const [error, updatedUser] = await translationAdd(user,translation)
             console.log(translation);
             if(error!== null){
