@@ -1,8 +1,9 @@
 import { NavLink } from "react-router-dom"
+import { useUser } from "../../context/UserContext"
 
 const NavBar = () => {
 
-   // const {user} = useUser ()
+    const {user} = useUser()
 
     return (
         <nav> 
