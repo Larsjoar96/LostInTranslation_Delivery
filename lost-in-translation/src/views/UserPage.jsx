@@ -6,6 +6,8 @@ import UserTranslationHistoryItem from '../components/User/UserTranslationHistor
 import { useUser } from '../context/UserContext';
 import { useEffect } from "react";
 import { userById } from "../api/user";
+import { saveStorage } from "../utils/storage";
+import { STORAGE_KEY_USER } from "../const/storageKeys";
 
  const UserPage = () => {
 
@@ -15,11 +17,12 @@ import { userById } from "../api/user";
         const findUser = async () => {
             const [error, latestUser] = await userById(user)
             if(error == null){
+                saveStorage(STORAGE_KEY_USER, latestUser)
                 setUser(latestUser)
             }
         }
 
-        findUser()
+        //findUser()
     },[setUser, user])
 
     return ( 

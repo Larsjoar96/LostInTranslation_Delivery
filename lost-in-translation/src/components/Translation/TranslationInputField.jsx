@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import {useForm} from 'react-hook-form'
 import { translationAdd } from '../../api/translations';
+import { STORAGE_KEY_USER } from '../../const/storageKeys';
 import { useUser } from '../../context/UserContext';
+import { saveStorage } from '../../utils/storage';
 
     const translationConfig = {
         required: true,
     }
     const TranslationInputField = () => {
-        const {user} = useUser()
+        const {user, setUser} = useUser()
         let [imageArray,setImageArray] = useState([]);
         const translation = imageArray.map((image,index)=> <img src={require(`../signs/${image}.png`)} key={index} alt="sign"/>)
         const{
@@ -17,9 +19,15 @@ import { useUser } from '../../context/UserContext';
         } = useForm();
         const onSubmit = async (data) => {
             const translation = data;
-            const [error, result] = await translationAdd(user,translation)
+            const [error, updatedUser] = await translationAdd(user,translation)
+            if(error!== null){
+                return 
+            }
+            saveStorage(STORAGE_KEY_USER, updatedUser )
+            setUser(updatedUser)
+
             console.log('Error', error);
-            console.log('Result', result);
+            console.log('updatedUser', updatedUser);
             const textArray = data.translation.split("");
             //console.log(textArray);
             translateText(textArray);

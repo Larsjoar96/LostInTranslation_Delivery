@@ -34,7 +34,7 @@ const LoginInputField = () => {
         saveStorage(STORAGE_KEY_USER, userResponse)
         if(userResponse !== null){
             setUser(userResponse)
-           // console.log(userResponse)
+            console.log(userResponse)
             localStorage.setItem(STORAGE_KEY_USER, userResponse)
         }
         // loginButton();
