@@ -1,9 +1,13 @@
 import { useState } from 'react';
 import {useForm} from 'react-hook-form'
+import { translationAdd } from '../../api/translations';
+import { useUser } from '../../context/UserContext';
+
     const translationConfig = {
         required: true,
     }
     const TranslationInputField = () => {
+        const {user} = useUser()
         let [imageArray,setImageArray] = useState([]);
         const translation = imageArray.map((image,index)=> <img src={require(`../signs/${image}.png`)} key={index} alt="sign"/>)
         const{
@@ -11,7 +15,11 @@ import {useForm} from 'react-hook-form'
             handleSubmit,
             formState:{errors}
         } = useForm();
-        const onSubmit = (data) => {
+        const onSubmit = async (data) => {
+            const translation = data;
+            const [error, result] = await translationAdd(user,translation)
+            console.log('Error', error);
+            console.log('Result', result);
             const textArray = data.translation.split("");
             //console.log(textArray);
             translateText(textArray);
@@ -27,8 +35,10 @@ import {useForm} from 'react-hook-form'
                     imageArray.push(textArray[i]);
                 }
             }
-            console.log(imageArray);
+            //console.log(imageArray);
         }
+
+
         const errorMessage = (() =>
         {
             if (!errors.translation)
