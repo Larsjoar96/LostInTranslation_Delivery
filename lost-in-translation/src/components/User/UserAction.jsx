@@ -4,14 +4,14 @@ import { useUser } from "../../context/UserContext";
 import { STORAGE_KEY_USER } from "../../const/storageKeys";
 
 
-const UserActions = ({logout}) => { 
+const UserActions = () => { 
     const {setUser } = useUser()
 
     const clickLogout = () => {
        if(window.confirm("Are you sure?")){
         deleteStorage(STORAGE_KEY_USER)
         setUser(null)
-       // logout();
+        //logout();
        }
    }
     return (

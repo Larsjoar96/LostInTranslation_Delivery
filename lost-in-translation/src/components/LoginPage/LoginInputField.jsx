@@ -3,8 +3,8 @@ import {useState, useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import {loginUser} from '../../api/user'
 import { saveStorage } from '../../utils/storage';
-import { useEffect } from 'react';
 import { useUser } from '../../context/UserContext';
+import { STORAGE_KEY_USER } from '../../const/storageKeys';
 
 const usernameConfig = {
     required: true,
@@ -22,32 +22,33 @@ const LoginInputField = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log("brøs", user)
-    }, [user])
+        console.log(user)
+        if (user !== null){
+            navigate("/translation")
+        }
+    }, [user, navigate])
 
     const onSubmit = async ({username}) => {
-
         const [error, userResponse] = await loginUser(username);
-        
-        if(user !== null){
-            saveStorage('Current user', user)
+               
+        saveStorage(STORAGE_KEY_USER, userResponse)
+        if(userResponse !== null){
+            setUser(userResponse)
+           // console.log(userResponse)
+            localStorage.setItem(STORAGE_KEY_USER, userResponse)
         }
-        loginButton();
-
+        // loginButton();
     }
 
-    if(userResponse !== null){
-        storageSave('Current-user', userResponse)
-        setUser(userResponse)
-    }
+
 
     //const [userName] = useState("")
-    function loginButton(){
+    // function loginButton(){
         
-        navigate ("/Translation")
+    //     navigate ("/Translation")
 
-        //localStorage.setItem("userName", userName)
-    }   
+    
+    // }   
 
     const errorMessage = (() =>
     {
@@ -77,7 +78,7 @@ const LoginInputField = () => {
                 {...register("username", usernameConfig)}/>
                 { errorMessage }
             </fieldset>
-            <button type="submit" onClick={loginButton()}>Login</button>
+            <button type="submit" >Login</button>
         </form>
 
     </>

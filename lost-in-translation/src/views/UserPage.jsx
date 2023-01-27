@@ -13,15 +13,15 @@ import { userById } from "../api/user";
 
     useEffect(() => {
         const findUser = async () => {
-            const [error, latestUser] = await userById(user.id)
-            if(error !== null){
+            const [error, latestUser] = await userById(user)
+            if(error == null){
                 setUser(latestUser)
             }
         }
 
         findUser()
-    },[setUser, user.id])
-    
+    },[setUser, user])
+
     return ( 
     <>
     <h1>User ohnmoooo</h1>

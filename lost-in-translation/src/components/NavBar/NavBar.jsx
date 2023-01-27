@@ -22,7 +22,8 @@ const NavBar = () => {
                     <NavLink to="/User">User</NavLink>
                 </li>
             </ul>  
-            {/* } */}
+        {/* //    } */}
+        
             
         </nav>
     )
