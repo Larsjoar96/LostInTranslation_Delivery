@@ -20,6 +20,7 @@ import { saveStorage } from '../../utils/storage';
         const onSubmit = async (data) => {
             const translation = data;
             const [error, updatedUser] = await translationAdd(user,translation)
+            console.log(translation);
             if(error!== null){
                 return 
             }

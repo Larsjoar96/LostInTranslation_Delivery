@@ -12,7 +12,7 @@ const NavBar = () => {
                     
                 </li>
             </ul>
-            {/* { user !== null &&  */}
+            { user !== null &&  
               <ul>
                 
                 <li>
@@ -22,7 +22,7 @@ const NavBar = () => {
                     <NavLink to="/User">User</NavLink>
                 </li>
             </ul>  
-        {/* //    } */}
+            }
         
             
         </nav>

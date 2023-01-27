@@ -1,4 +1,4 @@
-import { createHeaders } from "."
+import { createHeaders } from "./index"
 
 const apiUrl = process.env.REACT_APP_API_URL;
 
@@ -8,9 +8,10 @@ export const translationAdd = async (user, translation) => {
                 method: 'PATCH',
                 headers: createHeaders(),
                 body: JSON.stringify({
-                    translation: [...user.translation, translation]
+                    translations: [...user.translations, translation]
                 })
             })
+            console.log(`${apiUrl}/${user.id}`);
             if(!response.ok){
                 throw new Error('Could not update the translation')
             }
