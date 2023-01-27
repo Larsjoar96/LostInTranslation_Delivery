@@ -57,7 +57,7 @@ export const loginUser = async (username) =>
 
 export const userById = async (userId) => {
 try{
-    const response = await fetch(`${apiUrl}/${userId}`)
+    const response = await fetch(`${apiUrl}?id=${userId}`)
     if(!response.ok){
         throw new Error('Could not fetch user')
     }

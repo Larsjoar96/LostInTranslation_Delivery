@@ -22,7 +22,6 @@ const LoginInputField = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        console.log(user)
         if (user !== null){
             navigate("/translation")
         }
@@ -30,12 +29,13 @@ const LoginInputField = () => {
 
     const onSubmit = async ({username}) => {
         const [error, userResponse] = await loginUser(username);
+        console.log(userResponse)
                
-        saveStorage(STORAGE_KEY_USER, userResponse)
+        
         if(userResponse !== null){
+            saveStorage(STORAGE_KEY_USER, userResponse)
             setUser(userResponse)
             console.log(userResponse)
-            localStorage.setItem(STORAGE_KEY_USER, userResponse)
         }
         // loginButton();
     }

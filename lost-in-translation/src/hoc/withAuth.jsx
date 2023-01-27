@@ -4,7 +4,7 @@ import {Navigate} from "react-router-dom"
 
 const withAuth = Component => props =>{
     const {user}=useUser()
-    if(user == null){
+    if(user !== null){
         return <Component {...props} />
     }
     else{ 
