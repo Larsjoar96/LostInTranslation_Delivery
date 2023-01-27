@@ -1,7 +1,7 @@
 const UserHeader = ({username}) => { 
     return (
         <header>
-            <h4>Hello, how are you {username}</h4>
+            <h4>Welcome, {username} </h4>
         </header>
     )
 }

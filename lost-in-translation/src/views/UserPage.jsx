@@ -2,7 +2,6 @@ import withAuth from "../hoc/withAuth";
 import UserActions from "../components/User/UserAction";
 import UserHeader from "../components/User/UserHeader";
 import UserTranslationHistory from "../components/User/UserTranslationHistory";
-import UserTranslationHistoryItem from '../components/User/UserTranslationHistoryItem';
 import { useUser } from '../context/UserContext';
 import { useEffect } from "react";
 import { userById } from "../api/user";
@@ -15,8 +14,8 @@ import { STORAGE_KEY_USER } from "../const/storageKeys";
 
     useEffect(() => {
         const findUser = async () => {
-            const [error, latestUser] = await userById(user)
-            if(error == null){
+            const [error, latestUser] = await userById(user.id)
+            if(error !== null){
                 saveStorage(STORAGE_KEY_USER, latestUser)
                 setUser(latestUser)
             }
@@ -31,16 +30,13 @@ import { STORAGE_KEY_USER } from "../const/storageKeys";
     </>,
         <>
             
-            <UserHeader /*username={user.username}*//>
+            <UserHeader username={user.username}/>
             <UserActions />
-            <UserTranslationHistory /*translations={user.translations}*//>
-            <UserTranslationHistoryItem/>
+            <UserTranslationHistory translations={user.translations}/>
         </>
     )
    
  }
 
 export default withAuth(UserPage);
-export function logout(){};   
- //export default UserPage;
- 
+export function logout(){};    
