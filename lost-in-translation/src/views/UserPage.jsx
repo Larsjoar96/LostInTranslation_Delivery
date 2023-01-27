@@ -25,9 +25,6 @@ import { STORAGE_KEY_USER } from "../const/storageKeys";
     },[setUser, user])
 
     return ( 
-    <>
-    <h1>User ohnmoooo</h1>
-    </>,
         <>
             
             <UserHeader username={user.username}/>

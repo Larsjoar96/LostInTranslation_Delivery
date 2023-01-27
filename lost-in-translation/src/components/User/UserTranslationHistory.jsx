@@ -3,10 +3,9 @@ import UserTranslationHistoryItem from "./UserTranslationHistoryItem"
 const UserTranslationHistory = ({translations}) => { 
 
     const translationHistory = translations.map(
-         (translation, index ) => <UserTranslationHistoryItem key={ index + '-'+ translation} order ={translation}  />
+         (translation, index ) => <UserTranslationHistoryItem key={ index + '-'+ translation} translation = {translation}  />
          )
-
-    console.log(translationHistory)
+         console.log(translationHistory)
 
 
     return (
